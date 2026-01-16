@@ -1,28 +1,36 @@
 """
 PyQt5 版演示：更像实体计算器的面板 + 绘图/矩阵面板
+增强：改进嵌入绘图、键盘支持、历史和内存键、样式美化
 运行:
     pip install -r requirements-pyqt.txt
     python app_pyqt.py
 依赖: PyQt5, matplotlib, numpy, sympy, scipy (core.py 依赖)
 """
 import sys
-from PyQt5 import QtWidgets, QtCore
+import numpy as np
+import sympy as sp
+from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QWidget, QGridLayout, QVBoxLayout, QHBoxLayout,
-    QPushButton, QLineEdit, QTextEdit, QLabel, QGroupBox, QFormLayout, QMessageBox
+    QPushButton, QLineEdit, QTextEdit, QLabel, QGroupBox, QFormLayout, QMessageBox,
+    QListWidget, QShortcut
 )
+from PyQt5.QtGui import QFont, QKeySequence
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5 import NavigationToolbar2QT as NavigationToolbar
 import matplotlib.pyplot as plt
 
-from core import evaluate_expression, definite_integral, plot_function, parse_matrix, matrix_add, matrix_mul, matrix_inv, matrix_det, matrix_eig
+from core import evaluate_expression, parse_matrix, matrix_add, matrix_mul, matrix_inv, matrix_det, matrix_eig
 
 class CalcMainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("xiaowei — PyQt Scientific Calculator (demo)")
+        self.setWindowTitle("xiaowei — PyQt Scientific Calculator (enhanced)")
         self._init_ui()
-        self.setMinimumSize(900, 600)
+        self.setMinimumSize(980, 620)
+        self.history = []  # list of (expr, result)
+        self.memory = 0    # memory register (numeric or complex)
+        self.last_result = None
 
     def _init_ui(self):
         central = QWidget()
@@ -30,10 +38,19 @@ class CalcMainWindow(QMainWindow):
         central.setLayout(main_layout)
         self.setCentralWidget(central)
 
+        # 全局样式
+        self.setStyleSheet("""
+            QPushButton { font-size: 14px; padding: 6px; }
+            QLineEdit { font-size: 14px; }
+            QTextEdit { font-family: monospace; font-size: 13px; }
+        """
+        )
+
         # 左侧: 显示 + 数字键盘 + 科学函数
         left_box = QVBoxLayout()
         self.expr_input = QLineEdit()
         self.expr_input.setPlaceholderText("输入表达式，例如: sin(pi/4) + 3")
+        self.expr_input.returnPressed.connect(self._on_eval)  # Enter 键评估
         left_box.addWidget(self.expr_input)
 
         self.result_view = QTextEdit()
@@ -54,20 +71,43 @@ class CalcMainWindow(QMainWindow):
             btn.clicked.connect(self._on_key)
             keypad.addWidget(btn, r, c)
 
-        # 控制按钮
-        eval_btn = QPushButton("Eval")
+        # 控制按钮和内存键
+        eval_btn = QPushButton("=")
+        eval_btn.setToolTip('Evaluate (Enter)')
         eval_btn.clicked.connect(self._on_eval)
-        clear_btn = QPushButton("Clear")
+        clear_btn = QPushButton("C")
+        clear_btn.setToolTip('Clear (Esc)')
         clear_btn.clicked.connect(self._on_clear)
+
+        mplus = QPushButton('M+')
+        mplus.clicked.connect(self._on_m_plus)
+        mminus = QPushButton('M-')
+        mminus.clicked.connect(self._on_m_minus)
+        mr = QPushButton('MR')
+        mr.clicked.connect(self._on_mr)
+        mc = QPushButton('MC')
+        mc.clicked.connect(self._on_mc)
+
         left_box.addLayout(keypad)
         ctl_row = QHBoxLayout()
         ctl_row.addWidget(eval_btn)
         ctl_row.addWidget(clear_btn)
+        ctl_row.addWidget(mplus)
+        ctl_row.addWidget(mminus)
+        ctl_row.addWidget(mr)
+        ctl_row.addWidget(mc)
         left_box.addLayout(ctl_row)
+
+        # 历史列表
+        hist_label = QLabel('History')
+        self.history_list = QListWidget()
+        self.history_list.itemClicked.connect(self._on_history_clicked)
+        left_box.addWidget(hist_label)
+        left_box.addWidget(self.history_list, 1)
 
         main_layout.addLayout(left_box, 2)
 
-        # 右侧: tabs (Plot 和 Matrix)
+        # 右侧: Plot 和 Matrix
         right_box = QVBoxLayout()
 
         # Plot group
@@ -86,7 +126,7 @@ class CalcMainWindow(QMainWindow):
         form.addRow(range_layout)
         plot_layout.addLayout(form)
 
-        # matplotlib canvas
+        # matplotlib canvas (single figure reused)
         self.fig, self.ax = plt.subplots(figsize=(5,3))
         self.canvas = FigureCanvas(self.fig)
         self.toolbar = NavigationToolbar(self.canvas, self)
@@ -122,6 +162,10 @@ class CalcMainWindow(QMainWindow):
 
         main_layout.addLayout(right_box, 3)
 
+        # 快捷键: Esc 清空, Ctrl+H 清除历史
+        QShortcut(QKeySequence('Esc'), self, activated=self._on_clear)
+        QShortcut(QKeySequence('Ctrl+H'), self, activated=self._clear_history)
+
     # slot: keypad buttons
     def _on_key(self):
         sender = self.sender()
@@ -129,7 +173,6 @@ class CalcMainWindow(QMainWindow):
         # replace ^ with ** for python
         if t == '^':
             t = '**'
-        # insert at cursor
         cur = self.expr_input.cursorPosition()
         s = self.expr_input.text()
         new = s[:cur] + t + s[cur:]
@@ -143,16 +186,59 @@ class CalcMainWindow(QMainWindow):
             self.result_view.setText("请输入表达式")
             return
         try:
-            # some users use ^ for power; accept ** as well
-            expr = expr.replace('^','**')
-            res = evaluate_expression(expr)
+            expr_for_eval = expr.replace('^','**')
+            res = evaluate_expression(expr_for_eval)
+            self.last_result = res
+            # 显示
             self.result_view.setText(str(res))
+            # 追加历史
+            self.history.append((expr, res))
+            self.history_list.addItem(f"{expr} = {res}")
         except Exception as e:
             self._show_error("Eval 错误", str(e))
 
     def _on_clear(self):
         self.expr_input.clear()
         self.result_view.clear()
+
+    # Memory operations
+    def _on_m_plus(self):
+        if self.last_result is None:
+            return
+        try:
+            self.memory = complex(self.memory) + complex(self.last_result)
+        except Exception:
+            # ignore if not numeric
+            pass
+        self._show_message('Memory', f'Memory = {self.memory}')
+
+    def _on_m_minus(self):
+        if self.last_result is None:
+            return
+        try:
+            self.memory = complex(self.memory) - complex(self.last_result)
+        except Exception:
+            pass
+        self._show_message('Memory', f'Memory = {self.memory}')
+
+    def _on_mr(self):
+        # recall
+        self.expr_input.insert(str(self.memory))
+
+    def _on_mc(self):
+        self.memory = 0
+        self._show_message('Memory', 'Memory cleared')
+
+    def _on_history_clicked(self, item):
+        # 点击历史条目时，将表达式放入输入框
+        txt = item.text()
+        if '=' in txt:
+            expr = txt.split('=')[0].strip()
+            self.expr_input.setText(expr)
+
+    def _clear_history(self):
+        self.history = []
+        self.history_list.clear()
 
     def _on_plot(self):
         expr = self.plot_expr.text().strip()
@@ -162,8 +248,70 @@ class CalcMainWindow(QMainWindow):
         except Exception:
             self._show_error("Range error", "请输入有效的区间 a, b")
             return
+        if a >= b:
+            self._show_error("Range error", "确保 a < b")
+            return
         try:
-            # use core.plot_function to get a matplotlib.figure
-            fig = plot_function(expr, 'x', a, b, show=False)
-            # clear existing axes and draw new figure into our canvas
-            self.fig.clf()
+            # 使用 sympy 将表达式转换为数值函数并在当前 Axes 上绘图
+            x = sp.symbols('x')
+            expr_sym = sp.sympify(expr)
+            f = sp.lambdify(x, expr_sym, modules=["numpy", "math"])
+            xs = np.linspace(a, b, 800)
+            ys = f(xs)
+            ys = np.array(ys, dtype=np.complex128)
+            self.ax.clear()
+            if np.max(np.abs(np.imag(ys))) > 1e-12:
+                self.ax.plot(xs, np.real(ys), label='Re')
+                self.ax.plot(xs, np.imag(ys), label='Im', linestyle='--')
+                self.ax.legend()
+            else:
+                self.ax.plot(xs, np.real(ys))
+            self.ax.set_xlabel('x')
+            self.ax.set_ylabel(f'f(x)')
+            self.ax.grid(True)
+            self.canvas.draw_idle()
+        except Exception as e:
+            self._show_error("Plot 错误", str(e))
+
+    def _on_matrix(self):
+        sender = self.sender()
+        op = sender.property('op')
+        A = self.ma_edit.text().strip()
+        B = self.mb_edit.text().strip()
+        try:
+            if op == 'add':
+                res = matrix_add(A, B)
+                self.mat_res.setText(str(res))
+            elif op == 'mul':
+                res = matrix_mul(A, B)
+                self.mat_res.setText(str(res))
+            elif op == 'inv':
+                res = matrix_inv(A)
+                self.mat_res.setText(str(res))
+            elif op == 'det':
+                res = matrix_det(A)
+                self.mat_res.setText(str(res))
+            elif op == 'eig':
+                vals, vecs = matrix_eig(A)
+                txt = f"eigenvalues:\n{vals}\neigenvectors:\n{vecs}"
+                self.mat_res.setText(txt)
+        except Exception as e:
+            self._show_error("Matrix 错误", str(e))
+
+    def _show_error(self, title, msg):
+        QMessageBox.critical(self, title, msg)
+
+    def _show_message(self, title, msg):
+        QMessageBox.information(self, title, msg)
+
+
+def main():
+    app = QApplication(sys.argv)
+    # 更好看的默认字体
+    app.setFont(QFont('Arial', 11))
+    w = CalcMainWindow()
+    w.show()
+    sys.exit(app.exec_())
+
+if __name__ == '__main__':
+    main()
