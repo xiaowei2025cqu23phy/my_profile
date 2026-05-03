@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="个人学术主页 - 重庆大学物理学院">
+    <title>物理学渣小微 | 重庆大学 · 物理学院</title>
+
+    <!-- ========================================
+         样式文件
+    ======================================== -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- ========================================
+         字体 & 图标库 (可选)
+         - 使用 Google Fonts 的 Noto Sans SC (简体中文)
+         - Font Awesome 图标库
+    ======================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- ============================================
+         导航栏 Navigation
+    ============================================ -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="nav-logo">
+                <!-- 此处可替换为校徽或你的 logo -->
+                <span class="logo-text">物理学渣小微</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="切换菜单">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#about" class="nav-link">关于我</a></li>
+                <li><a href="#education" class="nav-link">教育经历</a></li>
+                <li><a href="#research" class="nav-link">研究方向</a></li>
+                <li><a href="#publications" class="nav-link">发表论文</a></li>
+                <li><a href="#projects" class="nav-link">科研项目</a></li>
+                <li><a href="#honors" class="nav-link">荣誉奖项</a></li>
+                <li><a href="#contact" class="nav-link">联系方式</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- ============================================
+         Hero 首屏区域
+         替换「你的名字」「专业」等信息
+    ============================================ -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="container hero-content">
+            <div class="hero-avatar">
+                <!-- 替换为你自己的照片 -->
+                <img src="assets/avatar.svg" alt="头像">
+            </div>
+            <h1 class="hero-name">物理学渣小微</h1>
+            <p class="hero-title">重庆大学 物理学院 · 23级物理强基本科生</p>
+            <p class="hero-subtitle">Chongqing University · Physics (Strengthened Foundation Program)</p>
+            <div class="hero-tags">
+                <span class="tag">量子光学</span>
+                <span class="tag">凝聚态物理</span>
+                <span class="tag">AI 智能体</span>
+                <!-- 按需增删标签 -->
+            </div>
+            <div class="hero-actions">
+                <a href="#about" class="btn btn-primary">了解更多</a>
+                <a href="#contact" class="btn btn-outline">联系我</a>
+            </div>
+            <div class="hero-social">
+                <!-- 替换为你的社交链接 -->
+                <a href="https://github.com/xiaowei2025cqu23phy" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:20236053@cqu.stu.edu.cn" target="_blank" title="邮箱"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.zhihu.com/people/wei-liang-90-33" target="_blank" title="知乎"><i class="fab fa-zhihu"></i></a>
+                <a href="https://space.bilibili.com/3546878773824370" target="_blank" title="B站"><i class="fab fa-bilibili"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         关于我 About
+    ============================================ -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">关于我</h2>
+            <div class="section-divider"></div>
+            <div class="about-content">
+                <div class="about-text">
+                    <!-- 在这里填写你的自我介绍 -->
+                    <p>
+                        你好！我是 <strong>物理学渣小微</strong>，重庆大学物理学院 2023 级物理强基本科生。
+                        目前对 <strong>量子光学 / 凝聚态物理 / AI 智能体</strong> 感兴趣，
+                        在 <strong>张瑜瑜</strong> 教授的指导下进行学习与研究。
+                    </p>
+                    <p>
+                        我热衷于用数学和物理的语言去理解自然界的底层规律，
+                        同时也对交叉学科充满好奇。
+                        这篇个人主页将记录我的学术成长轨迹，
+                        欢迎志同道合的小伙伴一起交流探讨！
+                    </p>
+                    <!-- 可以继续添加段落 -->
+                </div>
+                <div class="about-info">
+                    <div class="info-card">
+                        <div class="info-item">
+                            <span class="info-label"><i class="fas fa-university"></i> 学校</span>
+                            <span class="info-value">重庆大学</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label"><i class="fas fa-graduation-cap"></i> 学院</span>
+                            <span class="info-value">物理学院</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label"><i class="fas fa-calendar-alt"></i> 年级</span>
+                            <span class="info-value">2023级（大三）</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label"><i class="fas fa-tag"></i> 项目</span>
+                            <span class="info-value">物理强基计划</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label"><i class="fas fa-map-marker-alt"></i> 地点</span>
+                            <span class="info-value">中国 · 重庆</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         教育经历 Education
+    ============================================ -->
+    <section class="section section-alt" id="education">
+        <div class="container">
+            <h2 class="section-title">教育经历</h2>
+            <div class="section-divider"></div>
+            <div class="timeline">
+                <!-- ---- 条目 1 ---- -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023.09 – 至今</div>
+                        <h3>重庆大学 · 物理强基计划</h3>
+                        <p class="timeline-sub">本科 ｜ 物理学专业</p>
+                        <p>主修课程：高等数学、高等代数、数学物理方法、原子物理学、分析力学、电动力学、量子力学、计算物理学、热力学与统计物理、固体物理、群论、量子光学、物理实验</p>
+                        <p>选修课程：Python 程序设计与应用、大数据分析基础与应用、智慧图像处理、显微镜下的微观世界</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         研究方向 Research Interests
+    ============================================ -->
+    <section class="section" id="research">
+        <div class="container">
+            <h2 class="section-title">研究方向</h2>
+            <div class="section-divider"></div>
+            <div class="research-grid">
+                <!-- 卡片 1 -->
+                <div class="research-card">
+                    <div class="research-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>量子光学</h3>
+                    <p>光与物质相互作用、量子态调控。探索光子在量子信息处理中的应用。</p>
+                </div>
+                <!-- 卡片 2 -->
+                <div class="research-card">
+                    <div class="research-icon">
+                        <i class="fas fa-square-root-variable"></i>
+                    </div>
+                    <h3>凝聚态物理</h3>
+                    <p>拓扑物态、强关联体系。关注新奇量子物态的理论与计算研究。</p>
+                </div>
+                <!-- 卡片 3 -->
+                <div class="research-card">
+                    <div class="research-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI 智能体</h3>
+                    <p>工作流编排、大模型微调、深度学习。探索 AI 在物理研究中的应用。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         发表论文 Publications
+         还没有论文时可以保留占位，或直接隐藏整个 section
+    ============================================ -->
+    <section class="section section-alt" id="publications">
+        <div class="container">
+            <h2 class="section-title">发表论文</h2>
+            <div class="section-divider"></div>
+            <!--
+                提示：以下为占位内容。
+                如果你还没有论文，可以将本 section 用 隐藏（display: none;）来隐藏。
+            -->
+            <p class="placeholder-text">暂无发表论文，正在努力中 🚀</p>
+        </div>
+    </section>
+
+    <!-- ============================================
+         科研项目 Projects
+    ============================================ -->
+    <section class="section" id="projects">
+        <div class="container">
+            <h2 class="section-title">科研项目</h2>
+            <div class="section-divider"></div>
+            <div class="project-grid">
+                <!-- 项目卡片 1 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-tag">进行中</span>
+                        <h3>基于应变片的水流速检测系统</h3>
+                    </div>
+                    <p class="project-desc">
+                        <strong>2026 年大学生创新创业项目</strong> · 指导老师：郑雪丽<br><br>
+                        利用应变片的压阻效应，将其贴合在靶件材料上感知水流冲击产生的微小形变，通过惠斯通单桥电路将阻值变化转换为电压信号，再经 AD620 仪表放大器进行高精度放大。放大后的模拟信号由 ESP-32 微控制器采集，并通过其内置蓝牙模块无线传输至微信小程序端进行实时数据展示与分析。同时使用 ANSYS 对靶件结构进行流固耦合仿真，优化传感器灵敏度与线性度。本人与队友合作完成了电路设计与搭建、嵌入式程序编写及系统整体集成测试。
+                    </p>
+                    <div class="project-tech">
+                        <span>应变片</span>
+                        <span>惠斯通电桥</span>
+                        <span>AD620</span>
+                        <span>ESP-32</span>
+                        <span>蓝牙通信</span>
+                        <span>微信小程序</span>
+                        <span>C++</span>
+                        <span>ANSYS</span>
+                    </div>
+                </div>
+                <!-- 项目卡片 2 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-tag tag-blue">已完成</span>
+                        <h3>量子证据保真度研究</h3>
+                    </div>
+                    <p class="project-desc">
+                        <strong>2023–2024 年 SRTP 项目</strong> · 指导老师：肖富元<br><br>
+                        证据理论（Dempster–Shafer 理论）是一种处理不确定性信息的数学框架，本项目将其推广至量子体系，研究量子证据保真度的定义、基本性质与计算方法。保真度是衡量两个量子态之间相似程度的重要度量，在量子态估计与量子测量分析中具有核心地位。本人与队友通过查阅文献推导了量子证据保真度的若干数学性质，并利用 Python 进行数值模拟，验证了理论结果的有效性，为后续将证据理论应用于量子信息处理奠定了方法基础。
+                    </p>
+                    <div class="project-tech">
+                        <span>Python</span>
+                        <span>NumPy</span>
+                        <span>Matplotlib</span>
+                        <span>量子信息</span>
+                    </div>
+                </div>
+                <!-- 项目卡片 3 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-tag tag-green">课程项目</span>
+                        <h3>基于手势识别的快捷操作系统</h3>
+                    </div>
+                    <p class="project-desc">
+                        <strong>智慧图像处理</strong> · 指导老师：伍星<br><br>
+                        以 IPN 手势数据集（包含 14 类手势、5 种复杂背景）为训练数据，基于 ResNet34 残差网络构建图像分类模型，解决深层网络训练中的梯度消失问题。模型在测试集上达到较高准确率后，通过 PyQt 搭建桌面应用，调用摄像头进行实时手势识别，并引入状态机机制实现多手势的逻辑组合触发自定义快捷键操作（如切换窗口、播放控制等），实现了从模型训练到应用落地的完整闭环。本人与队友合作完成了数据预处理、模型训练与调优、以及桌面端应用开发。
+                    </p>
+                    <div class="project-tech">
+                        <span>Python</span>
+                        <span>PyTorch</span>
+                        <span>ResNet</span>
+                        <span>计算机视觉</span>
+                        <span>深度学习</span>
+                        <span>状态机</span>
+                        <span>PyQt</span>
+                        <span>手势控制</span>
+                    </div>
+                </div>
+                <!-- 项目卡片 4 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-tag tag-blue">竞赛项目</span>
+                        <h3>Island Cloud Spatiotemporal Prediction Model</h3>
+                    </div>
+                    <p class="project-desc">
+                        <strong>2025 MCM 校内选拔赛</strong><br><br>
+                        针对海洋孤立岛屿的海-陆-气相互作用，构建了一个耦合热力学-云微物理模型，综合考虑背景风场、海表温度、地形和大气层结等因素，预测岛屿云团的时空演变。模型通过热力-动力核心模拟岛屿热力结构与海风环流，耦合云微物理模块预测云的形成与演化，并利用现场观测与卫星数据进行验证。本人与队友共同完成了模型搭建、数值求解及敏感性分析。
+                    </p>
+                    <div class="project-tech">
+                        <span>数值模拟</span>
+                        <span>大气物理</span>
+                        <span>MATLAB</span>
+                        <span>MCM</span>
+                    </div>
+                </div>
+                <!-- 项目卡片 5 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-tag tag-blue">竞赛项目</span>
+                        <h3>Lato-lato 球运动模式分析</h3>
+                    </div>
+                    <p class="project-desc">
+                        <strong>2025 年物理学术竞赛课题</strong><br><br>
+                        针对菲律宾传统玩具 Lato-lato 球，基于牛顿第二定律建立了包含重力、绳子张力、空气阻力的动力学模型。数值模拟发现其运动模式分为稳定旋转和不稳定抛物线两类，参数分析表明绳子长度与初始旋转速度是影响模式的关键因素。本人与队友负责模型推导、数值仿真与结果分析。
+                    </p>
+                    <div class="project-tech">
+                        <span>动力学分析</span>
+                        <span>数值模拟</span>
+                        <span>Python</span>
+                        <span>物理建模</span>
+                    </div>
+                </div>
+                <!-- 项目卡片 6 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-tag tag-green">兴趣项目</span>
+                        <h3>天道玄机</h3>
+                    </div>
+                    <p class="project-desc">
+                        融合中国古代玄学智慧与现代 AI 的 Web 应用，具有新中式水墨美学风格。包含周易起卦（金钱卦/数字卦/梅花易数）、生辰八字排盘、AI 神谕（接入 DeepSeek 模型）、易理图解（河图洛书/八卦图/六十四卦象库）等核心模块。
+                        <br><a href="https://xiaowei2025cqu23phy.github.io/tian-dao-xuan-ji/" target="_blank">🔗 在线体验</a>
+                    </p>
+                    <div class="project-tech">
+                        <span>React</span>
+                        <span>TypeScript</span>
+                        <span>Framer Motion</span>
+                        <span>DeepSeek</span>
+                    </div>
+                </div>
+                <!-- 项目卡片 7 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-tag tag-green">兴趣项目</span>
+                        <h3>晶体结构实验室</h3>
+                    </div>
+                    <p class="project-desc">
+                        基于 React 18 和 Three.js 的高性能交互式晶体学可视化平台。支持 3D 晶体/分子结构双视图并行渲染、实时物理计算（晶胞体积、理论密度、空间利用率）、交互式元素周期表（H–Rn），以及一键导出 PNG/SVG。
+                        <br><a href="https://crystal-structure-three.vercel.app/" target="_blank">🔗 在线体验</a>
+                    </p>
+                    <div class="project-tech">
+                        <span>React</span>
+                        <span>Three.js</span>
+                        <span>TypeScript</span>
+                        <span>3D 可视化</span>
+                    </div>
+                </div>
+                <!-- 项目卡片 8 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-tag tag-green">兴趣项目</span>
+                        <h3>OmniCalc Pro</h3>
+                    </div>
+                    <p class="project-desc">
+                        全功能科学计算工作台，集成本地符号运算引擎与 Google Gemini AI 推理能力。支持复数运算与 Argand 图可视化、1D/2D/3D 函数绘图、物理速查手册（矢量分析/特殊函数/积分表）、智能微积分求解与 Laplace/Fourier 变换。
+                        <br><a href="https://omni-calc-pro-teal.vercel.app/" target="_blank">🔗 在线体验</a>
+                    </p>
+                    <div class="project-tech">
+                        <span>React</span>
+                        <span>TypeScript</span>
+                        <span>Gemini AI</span>
+                        <span>LaTeX</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         荣誉奖项 Honors & Awards
+    ============================================ -->
+    <section class="section section-alt" id="honors">
+        <div class="container">
+            <h2 class="section-title">荣誉奖项</h2>
+            <div class="section-divider"></div>
+            <div class="honors-grid">
+                <div class="honor-item">
+                    <i class="fas fa-trophy"></i>
+                    <div>
+                        <h4>重庆市大学生物理创新竞赛</h4>
+                        <p>重庆市教育委员会 · 2025年</p>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <i class="fas fa-award"></i>
+                    <div>
+                        <h4>重庆大学数学建模 2025 秋季赛暨 2026 MCM 校内选拔赛一等奖</h4>
+                        <p>重庆大学 · 2025年</p>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <i class="fas fa-medal"></i>
+                    <div>
+                        <h4>中国物理学术竞赛西南赛区一等奖</h4>
+                        <p>西南地区物理学术竞赛委员会 · 2025年</p>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <i class="fas fa-globe"></i>
+                    <div>
+                        <h4>2025 MCM Successful Participant</h4>
+                        <p>MCM/ICM · 2025年</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         联系方式 Contact
+    ============================================ -->
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title">联系方式</h2>
+            <div class="section-divider"></div>
+            <div class="contact-content">
+                <p class="contact-intro">欢迎通过以下方式与我联系，也欢迎学术交流与合作 🤝</p>
+                <div class="contact-grid">
+                    <a href="mailto:20236053@cqu.stu.edu.cn" class="contact-card" target="_blank">
+                        <i class="fas fa-envelope"></i>
+                        <h4>电子邮箱</h4>
+                        <p>20236053@cqu.stu.edu.cn</p>
+                    </a>
+                    <a href="https://github.com/xiaowei2025cqu23phy" class="contact-card" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <h4>GitHub</h4>
+                        <p>github.com/xiaowei2025cqu23phy</p>
+                    </a>
+                    <a href="https://xiaowei2025cqu23phy.github.io" class="contact-card" target="_blank">
+                        <i class="fas fa-globe"></i>
+                        <h4>个人主页</h4>
+                        <p>xiaowei2025cqu23phy.github.io</p>
+                    </a>
+                    <a href="https://www.zhihu.com/people/wei-liang-90-33" class="contact-card" target="_blank">
+                        <i class="fab fa-zhihu"></i>
+                        <h4>知乎</h4>
+                        <p>zhihu.com/wei-liang-90-33</p>
+                    </a>
+                    <a href="https://space.bilibili.com/3546878773824370" class="contact-card" target="_blank">
+                        <i class="fab fa-bilibili"></i>
+                        <h4>B站</h4>
+                        <p>space.bilibili.com</p>
+                    </a>
+                    <div class="contact-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h4>地址</h4>
+                        <p>重庆大学虎溪校区 · 物理学院</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         页脚 Footer
+    ============================================ -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; <span id="footerYear"></span> 物理学渣小微. 保留所有权利.</p>
+            <p class="footer-motto">重庆大学 · 物理学院 · 23级物理强基</p>
+            <p class="footer-built">Built with <i class="fas fa-heart"></i> & <i class="fas fa-flask"></i></p>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         返回顶部按钮
+    ============================================ -->
+    <button id="backToTop" class="back-to-top" aria-label="返回顶部">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ============================================
+         JavaScript
+    ============================================ -->
+    <script src="js/main.js"></script>
+</body>
+</html>
