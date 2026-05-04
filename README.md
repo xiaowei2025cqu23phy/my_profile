@@ -192,7 +192,7 @@ Lato-lato 是一种传统的菲律宾玩具，由两个球通过绳子连接，�
 | 方式 | 信息 |
 |:---:|:-----|
 | 📧 **Email** | [20236053@cqu.stu.edu.cn](mailto:20236053@cqu.stu.edu.cn) · [cqu.phy.23xiaowei@qq.com](mailto:cqu.phy.23xiaowei@qq.com) |
-| 🔗 **主页** | [xiaowei2025cqu23phy.github.io](https://xiaowei2025cqu23phy.github.io) |
+| 🔗 **主页** | [https://xiaowei2025cqu23phy.github.io/my_profile/](https://xiaowei2025cqu23phy.github.io/my_profile/) |
 | 💻 **GitHub** | [github.com/xiaowei2025cqu23phy](https://github.com/xiaowei2025cqu23phy) |
 | � **知乎** | [zhihu.com/people/wei-liang-90-33](https://www.zhihu.com/people/wei-liang-90-33) |
 | 📺 **B站** | [space.bilibili.com/3546878773824370](https://space.bilibili.com/3546878773824370) |
