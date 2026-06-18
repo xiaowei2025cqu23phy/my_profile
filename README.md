@@ -142,7 +142,7 @@ Lato-lato 是一种传统的菲律宾玩具，由两个球通过绳子连接，�
 ### 🌀 项目六（兴趣项目）— *天道玄机*
 
 融合中国古代玄学智慧与现代 AI 技术的综合性 Web 应用，具有"新中式水墨美学"视觉风格。
-🔗 [xiaowei2025cqu23phy.github.io/tian-dao-xuan-ji](https://xiaowei2025cqu23phy.github.io/tian-dao-xuan-ji/)
+🔗 [GitHub](https://github.com/xiaowei2025cqu23phy/tian-dao-xuan-ji/) · [Live Demo](https://xiaowei2025cqu23phy.github.io/tian-dao-xuan-ji/)
 
 **核心模块**：
 - **周易起卦** — 支持金钱卦、数字卦、时间卦（梅花易数）及手动起卦，包含本卦、变卦、互卦、错卦、综卦演算及体用关系义理分析
@@ -201,11 +201,11 @@ Lato-lato 是一种传统的菲律宾玩具，由两个球通过绳子连接，�
 | 方式 | 信息 |
 |:---:|:-----|
 | 📧 **Email** | [20236053@cqu.stu.edu.cn](mailto:20236053@cqu.stu.edu.cn) · [cqu.phy.23xiaowei@qq.com](mailto:cqu.phy.23xiaowei@qq.com) |
-| 🔗 **主页** | [xiaowei2025cqu23phy.github.io](https://xiaowei2025cqu23phy.github.io) |
+| 🔗 **主页** | [https://xiaowei2025cqu23phy.github.io/my_profile/](https://xiaowei2025cqu23phy.github.io/my_profile/) |
 | 💻 **GitHub** | [github.com/xiaowei2025cqu23phy](https://github.com/xiaowei2025cqu23phy) |
-| � **知乎** | [zhihu.com/people/wei-liang-90-33](https://www.zhihu.com/people/wei-liang-90-33) |
+|  **知乎** | [zhihu.com/people/wei-liang-90-33](https://www.zhihu.com/people/wei-liang-90-33) |
 | 📺 **B站** | [space.bilibili.com/3546878773824370](https://space.bilibili.com/3546878773824370) |
-| �📍 **地址** | 重庆大学虎溪校区 · 物理学院 |
+| 📍 **地址** | 重庆大学虎溪校区 · 物理学院 |
 
 ---
 
